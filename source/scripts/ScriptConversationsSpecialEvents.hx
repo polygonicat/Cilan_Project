@@ -6,6 +6,8 @@ import flixel.system.FlxSound;
 
 import sprites.UpperGUI;
 import sprites.LowerGUI;
+import database.DatabaseVariablesEvidence;
+import database.DatabaseVariablesProfiles;
 
 import flash.events.Event;
 import flash.utils.Timer;
@@ -38,55 +40,133 @@ class ScriptConversationsSpecialEvents extends FlxState
 		if (special_parameters[0] == "lightshake")
 		{
 			FlxG.camera.shake(0.003, 0.8, null, true, 0);
+			
+			if (special_parameters[3] != null)
+			{
+				SoundEffectManager.sound_manager_effects();
+			}
 		}
 		else if (special_parameters[0] == "hardshake")
 		{
 			FlxG.camera.shake(0.02, 0.8, null, true, 0);
+			
+			if (special_parameters[3] != null)
+			{
+				SoundEffectManager.sound_manager_effects();
+			}
 		}
 		else if (special_parameters[0] == "flash")
 		{
-			FlxG.camera.flash(0xffffff,0.3,null,true);
+			FlxG.camera.flash(0xffffff, 0.3, null, true);
+			
+			if (special_parameters[3] != null)
+			{
+				SoundEffectManager.sound_manager_effects();
+			}
 		}
 		else if (special_parameters[0] == "lightflash")
 		{
 			FlxG.camera.flash(0xffffff, 0.3, null, true);
 			FlxG.camera.shake(0.003, 0.8, null, true, 0);
+			
+			if (special_parameters[3] != null)
+			{
+				SoundEffectManager.sound_manager_effects();
+			}
 		}
 		else if (special_parameters[0] == "hardflash")
 		{
 			FlxG.camera.flash(0xffffff,0.3,null,true);
 			FlxG.camera.shake(0.02, 0.8, null, true, 0);
+			
+			if (special_parameters[3] != null)
+			{
+				SoundEffectManager.sound_manager_effects();
+			}
 		}
 		else if (special_parameters[0] == "delay")
 		{
-			ScriptConversations.special_event_timer.repeatCount = 1;
 			ScriptConversations.conversation_timer_update(special_parameters[1]);
 		}
 		else if (special_parameters[0] == "leftevidence")
 		{
+			if (special_parameters[1] == "evidence")
+			{
+				UpperGUI.main_conversation_court_record_show_evidence.alive = true;
+				UpperGUI.main_conversation_court_record_show_evidence.exists = true;
+				UpperGUI.main_conversation_court_record_show_evidence.animation.play("empty");
+			}
+			else if (special_parameters[1] == "profile")
+			{
+				UpperGUI.main_conversation_court_record_show_profile.alive = true;
+				UpperGUI.main_conversation_court_record_show_profile.exists = true;
+				UpperGUI.main_conversation_court_record_show_profile.animation.play("empty");
+			}
+			
 			//-- Necromancy: Summoning Frame
 			UpperGUI.main_conversation_court_record_show_frame.alive = true;
 			UpperGUI.main_conversation_court_record_show_frame.exists = true;
 			
-			ScriptConversations.special_event_timer.repeatCount = 1;
 			UpperGUI.main_conversation_court_record_show_frame.x = 1;
 			UpperGUI.main_conversation_court_record_show_profile.x = 8;
 			UpperGUI.main_conversation_court_record_show_evidence.x = 8;
 			UpperGUI.main_conversation_court_record_show_frame.facing = 0;
 			UpperGUI.main_conversation_court_record_show_frame.animation.play("appear");
+			
+			UpperGUI.item_temporary_container = special_parameters[2];
+			
+			UpperGUI.sfx_shooop.play();
 		}
 		else if (special_parameters[0] == "rightevidence")
 		{
+			if (special_parameters[1] == "evidence")
+			{
+				UpperGUI.main_conversation_court_record_show_evidence.alive = true;
+				UpperGUI.main_conversation_court_record_show_evidence.exists = true;
+				UpperGUI.main_conversation_court_record_show_evidence.animation.play("empty");
+			}
+			else if (special_parameters[1] == "profile")
+			{
+				UpperGUI.main_conversation_court_record_show_profile.alive = true;
+				UpperGUI.main_conversation_court_record_show_profile.exists = true;
+				UpperGUI.main_conversation_court_record_show_profile.animation.play("empty");
+			}
+			
 			//-- Necromancy: Summoning Frame
 			UpperGUI.main_conversation_court_record_show_frame.alive = true;
 			UpperGUI.main_conversation_court_record_show_frame.exists = true;
 			
-			ScriptConversations.special_event_timer.repeatCount = 1;
 			UpperGUI.main_conversation_court_record_show_frame.x = 329;
 			UpperGUI.main_conversation_court_record_show_profile.x = 336;
 			UpperGUI.main_conversation_court_record_show_evidence.x = 336;
 			UpperGUI.main_conversation_court_record_show_frame.facing = 1;
 			UpperGUI.main_conversation_court_record_show_frame.animation.play("appear");
+			
+			UpperGUI.item_temporary_container = special_parameters[2];
+			
+			UpperGUI.sfx_shooop.play();
+		}
+		else if (special_parameters[0] == "removescreenevidence")
+		{
+			if (UpperGUI.main_conversation_court_record_show_evidence.alive == true)
+			{
+				UpperGUI.main_conversation_court_record_show_evidence.alive = false;
+				UpperGUI.main_conversation_court_record_show_evidence.exists = false;
+			}
+			
+			if (UpperGUI.main_conversation_court_record_show_profile.alive == true)
+			{
+				UpperGUI.main_conversation_court_record_show_profile.alive = false;
+				UpperGUI.main_conversation_court_record_show_profile.exists = false;
+			}
+			
+			UpperGUI.main_conversation_court_record_show_frame.animation.play("disappear");
+			
+			UpperGUI.sfx_shooop.play();
+		}
+		else if (special_parameters[0] == "sound")
+		{
+			SoundEffectManager.sound_manager_main();
 		}
 		else if (special_parameters[0] == "animations")
 		{
@@ -145,10 +225,15 @@ class ScriptConversationsSpecialEvents extends FlxState
 				UpperGUI.stamp_record_file01.htmlText = UpperGUI.stamp_record_file01.htmlText + show_timestamp_line01.charAt(show_timestamp_letter_counter);
 				show_timestamp_letter_counter++;
 				
-				if (show_timestamp_line01.charAt(show_timestamp_letter_counter) != " ")
+				if (show_timestamp_line01.charAt(show_timestamp_letter_counter) != " " && ScriptConversations.when_to_chirp >= 1)
 				{
+					ScriptConversations.when_to_chirp = 0;
 					UpperGUI.sfx_typewriter.stop();
 					UpperGUI.sfx_typewriter.play();
+				}
+				else
+				{
+					ScriptConversations.when_to_chirp++;
 				}
 			}
 			else
@@ -164,10 +249,15 @@ class ScriptConversationsSpecialEvents extends FlxState
 				UpperGUI.stamp_record_file02.htmlText = UpperGUI.stamp_record_file02.htmlText + show_timestamp_line02.charAt(show_timestamp_letter_counter);
 				show_timestamp_letter_counter++;
 				
-				if (show_timestamp_line02.charAt(show_timestamp_letter_counter) != " ")
+				if (show_timestamp_line02.charAt(show_timestamp_letter_counter) != " " && ScriptConversations.when_to_chirp >= 1)
 				{
+					ScriptConversations.when_to_chirp = 0;
 					UpperGUI.sfx_typewriter.stop();
 					UpperGUI.sfx_typewriter.play();
+				}
+				else
+				{
+					ScriptConversations.when_to_chirp++;
 				}
 			}
 			else
@@ -183,10 +273,15 @@ class ScriptConversationsSpecialEvents extends FlxState
 				UpperGUI.stamp_record_file03.htmlText = UpperGUI.stamp_record_file03.htmlText + show_timestamp_line03.charAt(show_timestamp_letter_counter);
 				show_timestamp_letter_counter++;
 				
-				if (show_timestamp_line03.charAt(show_timestamp_letter_counter) != " ")
+				if (show_timestamp_line03.charAt(show_timestamp_letter_counter) != " " && ScriptConversations.when_to_chirp >= 1)
 				{
+					ScriptConversations.when_to_chirp = 0;
 					UpperGUI.sfx_typewriter.stop();
 					UpperGUI.sfx_typewriter.play();
+				}
+				else
+				{
+					ScriptConversations.when_to_chirp++;
 				}
 			}
 			else
@@ -264,15 +359,21 @@ class ScriptConversationsSpecialEvents extends FlxState
 					UpperGUI.text_conversation_nametag.text = ScriptConversations.conversation_current_nametag;
 				}
 				
-				if (ScriptConversations.conversation_current_gender == "F")
+				if (ScriptConversations.conversation_current_gender == "F" && ScriptConversations.when_to_chirp >= 1)
 				{
+					ScriptConversations.when_to_chirp = 0;
 					UpperGUI.sfx_blipfemale.stop();
 					UpperGUI.sfx_blipfemale.play();
 				}
-				else if (ScriptConversations.conversation_current_gender == "M")
+				else if (ScriptConversations.conversation_current_gender == "M" && ScriptConversations.when_to_chirp >= 1)
 				{
+					ScriptConversations.when_to_chirp = 0;
 					UpperGUI.sfx_blipmale.stop();
 					UpperGUI.sfx_blipmale.play();
+				}
+				else
+				{
+					ScriptConversations.when_to_chirp++;
 				}
 				
 				//-- Default Conversations

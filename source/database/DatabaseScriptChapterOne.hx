@@ -44,9 +44,9 @@ class DatabaseScriptChapterOne  extends FlxState
 		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
 		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a1";
 		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Timestamp";
-		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "February 18, 9:00 AM#Striaton Restaurant#Main Hall";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "May 31, 9:00 AM#Striaton Restaurant#Main Hall";
 		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "";
-		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 50;
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
 		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
 		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
 		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a2";
@@ -55,11 +55,11 @@ class DatabaseScriptChapterOne  extends FlxState
 		
 		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
 		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a2";
-		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Chili";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cilan";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "Looks like everything seems fine, it smells like a job well done in the Striaton Restaurant!";
 		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
-		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "{animations,cress_normal_taunt,false}{#ffff00,Welcome to our very first update about the game!}";
-		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 50;
-		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "effectnext,Normal_Cress";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
 		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
 		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a3";
 		
@@ -67,12 +67,146 @@ class DatabaseScriptChapterOne  extends FlxState
 		
 		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
 		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a3";
-		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Chili";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "{flash,1,200,sfx-lightbulb}{animations,chili_normal_talk,false}Yeah I guess it is pretty much the same as usual in the Striaton Gy...{sound,sfx-lightbulb,1,100}{#FF9900,I MEAN} Striaton Restaurant!{animations,chili_normal_laugh,false} Hehehe!{animations,chili_normal_idle,false}";
 		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
-		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "Added another Pokeball in Court Records";
-		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 50;
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "effectnext,Normal_Chili";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a4";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a4";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cilan";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "Erm, Chili I kinda noticed that by now...";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a5";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a5";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cress";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "{sound,sfx-lightbulb,1,100}{animations,cress_normal_talk,false}Cilan.{animations,cress_normal_idle,false}";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "effectboth,Normal_Cress";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a6";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a6";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cilan";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "Oh hey Cress! What's wrong?";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a7";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a7";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cress";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "{animations,cress_normal_relief_talk,false}You seem to forgot one important thing that you should have with you.{animations,cress_normal_relief,false}";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a8";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a8";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cilan";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "Forgot one thing? Hmm...I don't seem to forgot anything, I have done all of the chores around the restaurant and...";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a9";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a9";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cilan";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "{flash,1,200,sfx-lightbulb}...!";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a10";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a10";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cress";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "{leftevidence,evidence,1}{animations,cress_normal_relief_talk,false}You forgot your connoisseur badge in your room.You really need to remember to always pin it up on your uniform before leaving your room.{animations,cress_normal_relief,false}";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a11";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a11";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cilan";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "{removescreenevidence}Thank you Cress! I won't forget about it next time so don't worry.";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a12";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a12";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "A Class Badge added to the Court Records!";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
 		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
 		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "add,1";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a13";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a13";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cilan";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "So yeah..! Back to the subject! Cress why are you looking for me again?";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "a14";
+		
+		DatabaseVariablesScript.conversation_index++;
+		
+		DatabaseVariablesScript.script_chapter[DatabaseVariablesScript.conversation_index] = DatabaseVariablesScript.conversation_chapter_index;
+		DatabaseVariablesScript.script_index[DatabaseVariablesScript.conversation_index] = "a14";
+		DatabaseVariablesScript.script_nametag[DatabaseVariablesScript.conversation_index] = "Cress";
+		DatabaseVariablesScript.words[DatabaseVariablesScript.conversation_index] = "{sound,sfx-lightbulb,1,100}{animations,cress_normal_sad,false}{delay,600}{delay,20}{animations,cress_normal_sad_talk,false}Um....I was wondering, are you still thinking about that {#FF9900,career}?{animations,cress_normal_sad,false}";
+		DatabaseVariablesScript.gender[DatabaseVariablesScript.conversation_index] = "M";
+		DatabaseVariablesScript.text_speed[DatabaseVariablesScript.conversation_index] = 20;
+		DatabaseVariablesScript.npc_transition[DatabaseVariablesScript.conversation_index] = "";
+		DatabaseVariablesScript.inventory_update[DatabaseVariablesScript.conversation_index] = "";
 		DatabaseVariablesScript.next_script[DatabaseVariablesScript.conversation_index] = "stop";
+		
+		DatabaseVariablesScript.conversation_index++;
 	}
 }

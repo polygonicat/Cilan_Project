@@ -50,7 +50,7 @@ class ScriptCourtRecords
 	public static var container_name_tag_inactive_y = 308;
 	
 	public static var evidence_inventory:Array<Dynamic> = [0];
-	public static var profile_inventory:Array<Dynamic> = [0,1,2];
+	public static var profile_inventory:Array<Dynamic> = [0, 1, 2];
 	public static var evidence_current_page:Int = 0;
 	public static var profile_current_page:Int = 0;
 	public static var evidence_max_page:Int = 0;
@@ -116,6 +116,8 @@ class ScriptCourtRecords
 	{
 		if (LowerGUI.container_more_detail_01.exists == false)
 		{
+			UpperGUI.sfx_shooop.play();
+			
 			LowerGUI.container_more_detail_01.alive = true;
 			LowerGUI.container_image_show_01.alive = true;
 			LowerGUI.container_more_detail_border_01.alive = true;
@@ -1233,32 +1235,10 @@ class ScriptCourtRecords
 		
 		if (LowerGUI.border_tag_evidence.alive == true)
 		{
-			var last_item_evidence:Int = ScriptCourtRecords.evidence_inventory.length - 1;
-			
-			if (ScriptCourtRecords.inventory_current_evidence_index == last_item_evidence)
-			{
-				inventory_current_evidence_index = 0;
-			}
-			else
-			{
-				inventory_current_evidence_index++;
-			}
-			
 			current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[evidence_inventory[inventory_current_evidence_index]];
 		}
 		else if (LowerGUI.border_tag_profiles.alive == true)
 		{
-			var last_item_profile:Int = ScriptCourtRecords.profile_inventory.length - 1;
-			
-			if (ScriptCourtRecords.inventory_current_profile_index == last_item_profile)
-			{
-				inventory_current_profile_index = 0;
-			}
-			else
-			{
-				inventory_current_profile_index++;
-			}
-			
 			current_picked_profiles = DatabaseVariablesProfiles.npc_id[profile_inventory[inventory_current_profile_index]];
 		}
 		
@@ -1336,30 +1316,10 @@ class ScriptCourtRecords
 		
 		if (LowerGUI.border_tag_evidence.alive == true)
 		{
-			if (ScriptCourtRecords.inventory_current_evidence_index == 0)
-			{
-				var last_item_evidence:Int = ScriptCourtRecords.evidence_inventory.length - 1;
-				inventory_current_evidence_index = last_item_evidence;
-			}
-			else
-			{
-				inventory_current_evidence_index--;
-			}
-			
 			current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[evidence_inventory[inventory_current_evidence_index]];
 		}
 		else if (LowerGUI.border_tag_profiles.alive == true)
 		{
-			if (ScriptCourtRecords.inventory_current_profile_index == 0)
-			{
-				var last_item_profile:Int = ScriptCourtRecords.profile_inventory.length - 1;
-				inventory_current_profile_index = last_item_profile;
-			}
-			else
-			{
-				inventory_current_profile_index--;
-			}
-			
 			current_picked_profiles = DatabaseVariablesProfiles.npc_id[profile_inventory[inventory_current_profile_index]];
 		}
 		

@@ -20,6 +20,7 @@ import database.DatabaseEvidenceChapterOne;
 import scripts.ScriptCourtRecords;
 import scripts.ScriptMouseChecks;
 import scripts.ScriptConversations;
+import scripts.ScriptConversationsSpecialEvents;
 
 import sprites.LowerGUI;
 
@@ -34,6 +35,7 @@ class LowerGUI extends FlxState
 	public static var court_record_grid_pic_group:FlxGroup;
 	public static var court_record_container_group:FlxGroup;
 	public static var court_record_more_detail_group:FlxGroup;
+	
 	
 	public static var investigation_buttons_group:FlxGroup;
 	public static var investigation_buttons_options_group:FlxGroup;
@@ -820,11 +822,19 @@ class LowerGUI extends FlxState
 		investigation_buttons_group.add(investigation_button_04);
 		
 		//-- Scanlines
-		//lower_scanlines = new FlxSprite(0, 0);
-		//lower_scanlines.loadGraphic("assets/images/GUI/background/scanlines.png", false, false, 446, 335, false);
-		//lower_scanlines.x = 0;
-		//lower_scanlines.y = 334;
-		//add(lower_scanlines);
+		var scanline_counter:Int = 0;
+		
+		while (scanline_counter <= 80)
+		{
+			lower_scanlines = new FlxSprite(0,0);
+			lower_scanlines.makeGraphic(445, 2, 0xFFFFFFFF);
+			lower_scanlines.x = 0;
+			lower_scanlines.y = 334 + (scanline_counter * 4);
+			lower_scanlines.alpha = 0.1;
+			add(lower_scanlines);
+			
+			scanline_counter++;
+		}
 		
 		court_record_border_group = new FlxGroup();		
 		add(court_record_border_group);
@@ -969,7 +979,7 @@ class LowerGUI extends FlxState
 	
 	public static function button_main_anim_controller(anim_name:String, frame_number:Int, frame_index:Int):Void
 	{
-		if (anim_name == "appear" && frame_index == 1 && ScriptConversations.conversation_current_inventory_update == "")
+		if (anim_name == "appear" && frame_index == 1 && ScriptMouseChecks.halt_mouse_trigger != 2 && ScriptConversations.conversation_timer.running == false)
 		{
 			LowerGUI.arrow_main_conversation.alive = true;
 			LowerGUI.arrow_main_conversation.exists = true;
@@ -977,6 +987,9 @@ class LowerGUI extends FlxState
 		
 		if (anim_name == "disappear" && ScriptConversations.conversation_current_inventory_update != "")
 		{
+			LowerGUI.arrow_main_conversation.alive = false;
+			LowerGUI.arrow_main_conversation.exists = false;
+			
 			temp_investigation_page = 0;
 			
 			if (ScriptCourtRecords.evidence_inventory.length > 0)
@@ -1000,8 +1013,13 @@ class LowerGUI extends FlxState
 			}
 			
 			LowerGUI.container_court_record_01.animation.play("appear");
-			FlxTween.linearMotion(LowerGUI.container_name_tag, ScriptCourtRecords.container_name_tag_inactive_x, ScriptCourtRecords.container_name_tag_inactive_y, ScriptCourtRecords.container_name_tag_active_x, ScriptCourtRecords.container_name_tag_active_y, 0.1, true);
+			FlxTween.linearMotion(LowerGUI.container_name_tag, ScriptCourtRecords.container_name_tag_inactive_x, ScriptCourtRecords.container_name_tag_inactive_y, ScriptCourtRecords.container_name_tag_active_x, ScriptCourtRecords.container_name_tag_active_y, 0.1, true,{complete:inventory_update_nametag});
 		}
+	}
+	
+	public static function inventory_update_nametag(tween:FlxTween):Void
+	{
+		LowerGUI.text_court_record_nametag.text = DatabaseVariablesEvidence.item_name[ScriptConversationsSpecialEvents.special_parameters[2]];
 	}
 	
 	public static function container_court_record(anim_name:String, frame_number:Int, frame_index:Int):Void
@@ -1061,7 +1079,7 @@ class LowerGUI extends FlxState
 		}
 		else if (anim_name == "disappear" && ScriptMouseChecks.halt_mouse_trigger == 2 && frame_index == 26)
 		{
-			
+			LowerGUI.button_main_conversation.animation.play("appear");
 		}
 	}
 	
@@ -1169,6 +1187,27 @@ class LowerGUI extends FlxState
 			
 			LowerGUI.container_image_show_01.animation.play("idle");
 			ScriptCourtRecords.next_more_detail_detection_01();
+		}
+	}
+	
+	public static function back_to_convo_from_acquire(tween:FlxTween):Void
+	{
+		ScriptMouseChecks.halt_mouse_trigger = 0;
+		
+		//-- Insert resume here
+		ScriptConversations.conversation_timer.start();
+		var start_script_counter:Int = 0;
+			
+		while (ScriptConversations.current_chapter_script_index[start_script_counter] != null)
+		{
+			if (ScriptConversations.current_chapter_script_index[start_script_counter] == ScriptConversations.current_next_script)
+			{
+				ScriptConversations.conversation_timer_start(ScriptConversations.current_chapter_script_nametag[start_script_counter], ScriptConversations.current_chapter_gender[start_script_counter], ScriptConversations.current_chapter_words[start_script_counter], ScriptConversations.current_chapter_text_speed[start_script_counter],ScriptConversations.current_chapter_npc_transition[start_script_counter],ScriptConversations.current_chapter_inventory_update[start_script_counter]);
+				ScriptConversations.current_next_script = ScriptConversations.current_chapter_next_script[start_script_counter];
+				break;
+			}
+			
+			start_script_counter++;
 		}
 	}
 }

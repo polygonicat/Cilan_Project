@@ -19,8 +19,12 @@ import flash.filters.DropShadowFilter;
 import openfl.Assets;
 
 import database.DatabaseAnimationNPC;
+import database.DatabaseVariablesProfiles;
+import database.DatabaseAnimationCourtRecords;
+import database.DatabaseVariablesEvidence;
 import scripts.ScriptConversationsSpecialEvents;
 import scripts.ScriptConversations;
+
 
 @:font("assets/fonts/Ace-Attorney.ttf") class AAFont extends Font { }
 
@@ -64,9 +68,34 @@ class UpperGUI extends FlxState
 	public static var sfx_blipmale:FlxSound;
 	public static var sfx_blipfemale:FlxSound;
 	public static var sfx_typewriter:FlxSound;
+	public static var sfx_bleep:FlxSound;
+	public static var sfx_blink:FlxSound;
+	public static var sfx_cancel:FlxSound;
+	public static var sfx_damage1:FlxSound;
+	public static var sfx_damage2:FlxSound;
+	public static var sfx_dink:FlxSound;
+	public static var sfx_dramapound:FlxSound;
+	public static var sfx_lightbulb:FlxSound;
+	public static var sfx_pichoop:FlxSound;
+	public static var sfx_realization:FlxSound;
+	public static var sfx_scroll:FlxSound;
+	public static var sfx_selectblip1:FlxSound;
+	public static var sfx_selectblip2:FlxSound;
+	public static var sfx_shock1:FlxSound;
+	public static var sfx_shock2:FlxSound;
+	public static var sfx_shooop:FlxSound;
+	public static var sfx_smack:FlxSound;
+	public static var sfx_stab1:FlxSound;
+	public static var sfx_stab2:FlxSound;
+	public static var sfx_thud2:FlxSound;
+	public static var sfx_whack:FlxSound;
+	public static var sfx_getitem:FlxSound;
 	
 	//-- Special Var
 	public static var finished_npc:Int = 0;
+	
+	//-- Item Temporary Index Container
+	public static var item_temporary_container:Int = 0;
 	
 	public function new() 
 	{
@@ -87,6 +116,94 @@ class UpperGUI extends FlxState
 		sfx_typewriter = new FlxSound();
 		sfx_typewriter.loadEmbedded("sfx_typewriter", false, false);
 		add(sfx_typewriter);
+		
+		sfx_bleep = new FlxSound();
+		sfx_bleep.loadEmbedded("sfx_bleep", false, false);
+		add(sfx_bleep);
+		
+		sfx_blink = new FlxSound();
+		sfx_blink.loadEmbedded("sfx_blink", false, false);
+		add(sfx_blink);
+		
+		sfx_cancel = new FlxSound();
+		sfx_cancel.loadEmbedded("sfx_cancel", false, false);
+		add(sfx_cancel);
+		
+		sfx_damage1 = new FlxSound();
+		sfx_damage1.loadEmbedded("sfx_damage1", false, false);
+		add(sfx_damage1);
+		
+		sfx_damage2 = new FlxSound();
+		sfx_damage2.loadEmbedded("sfx_damage2", false, false);
+		add(sfx_damage2);
+		
+		sfx_dink = new FlxSound();
+		sfx_dink.loadEmbedded("sfx_dink", false, false);
+		add(sfx_dink);
+		
+		sfx_dramapound = new FlxSound();
+		sfx_dramapound.loadEmbedded("sfx_dramapound", false, false);
+		add(sfx_dramapound);
+		
+		sfx_lightbulb = new FlxSound();
+		sfx_lightbulb.loadEmbedded("sfx_lightbulb", false, false);
+		add(sfx_lightbulb);
+		
+		sfx_pichoop = new FlxSound();
+		sfx_pichoop.loadEmbedded("sfx_pichoop", false, false);
+		add(sfx_pichoop);
+		
+		sfx_realization = new FlxSound();
+		sfx_realization.loadEmbedded("sfx_realization", false, false);
+		add(sfx_realization);
+		
+		sfx_scroll = new FlxSound();
+		sfx_scroll.loadEmbedded("sfx_scroll", false, false);
+		add(sfx_scroll);
+		
+		sfx_selectblip1 = new FlxSound();
+		sfx_selectblip1.loadEmbedded("sfx_selectblip1", false, false);
+		add(sfx_selectblip1);
+		
+		sfx_selectblip2 = new FlxSound();
+		sfx_selectblip2.loadEmbedded("sfx_selectblip2", false, false);
+		add(sfx_selectblip2);
+		
+		sfx_shock1 = new FlxSound();
+		sfx_shock1.loadEmbedded("sfx_shock1", false, false);
+		add(sfx_shock1);
+		
+		sfx_shock2 = new FlxSound();
+		sfx_shock2.loadEmbedded("sfx_shock2", false, false);
+		add(sfx_shock2);
+		
+		sfx_shooop = new FlxSound();
+		sfx_shooop.loadEmbedded("sfx_shooop", false, false);
+		add(sfx_shooop);
+		
+		sfx_smack = new FlxSound();
+		sfx_smack.loadEmbedded("sfx_smack", false, false);
+		add(sfx_smack);
+		
+		sfx_stab1 = new FlxSound();
+		sfx_stab1.loadEmbedded("sfx_stab1", false, false);
+		add(sfx_stab1);
+		
+		sfx_stab2 = new FlxSound();
+		sfx_stab2.loadEmbedded("sfx_stab2", false, false);
+		add(sfx_stab2);
+		
+		sfx_thud2 = new FlxSound();
+		sfx_thud2.loadEmbedded("sfx_thud2", false, false);
+		add(sfx_thud2);
+		
+		sfx_whack = new FlxSound();
+		sfx_whack.loadEmbedded("sfx_whack", false, false);
+		add(sfx_whack);
+		
+		sfx_getitem = new FlxSound();
+		sfx_getitem.loadEmbedded("sfx_getitem", false, false);
+		add(sfx_getitem);
 		
 		//-- Graphics
 		
@@ -236,8 +353,8 @@ class UpperGUI extends FlxState
 		
 		main_conversation_court_record_show_frame = new FlxSprite(0, 0);
 		main_conversation_court_record_show_frame.loadGraphic("assets/images/GUI/containers/conversation_show_court_record.png", true, 115, 115, false);
-		main_conversation_court_record_show_frame.animation.add("appear", [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 100, false);
-		main_conversation_court_record_show_frame.animation.add("disappear", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 200, false);
+		main_conversation_court_record_show_frame.animation.add("appear", [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 90, false);
+		main_conversation_court_record_show_frame.animation.add("disappear", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 90, false);
 		main_conversation_court_record_show_frame.animation.add("invisible", [15], 0, false);
 		main_conversation_court_record_show_frame.animation.add("idle", [0], 0, false);
 		//main_conversation_court_record_show_frame.x = 329;
@@ -263,6 +380,7 @@ class UpperGUI extends FlxState
 		
 		main_conversation_court_record_show_evidence = new FlxSprite(0, 0);
 		main_conversation_court_record_show_evidence.loadGraphic("assets/images/GUI/evidence/large/evidence_grid_spritesheet.png", true, 102, 102, false);
+		main_conversation_court_record_show_evidence.animation.add("empty", [0], 0, false);
 		main_conversation_court_record_show_evidence.x = 8;
 		//main_conversation_court_record_show_evidence.x = 336;
 		main_conversation_court_record_show_evidence.y = 8;
@@ -270,6 +388,7 @@ class UpperGUI extends FlxState
 		
 		main_conversation_court_record_show_profile = new FlxSprite(0, 0);
 		main_conversation_court_record_show_profile.loadGraphic("assets/images/GUI/profile/large/profile_grid_spritesheet.png", true, 102, 102, false);
+		main_conversation_court_record_show_profile.animation.add("empty", [0], 0, false);
 		main_conversation_court_record_show_profile.x = 8;
 		//main_conversation_court_record_show_profile.x = 336;
 		main_conversation_court_record_show_profile.y = 8;
@@ -311,15 +430,20 @@ class UpperGUI extends FlxState
 	
 	private static function evidence_frame(anim_name:String, frame_number:Int, frame_index:Int):Void 
 	{
-		if (anim_name == "appear" && main_conversation_court_record_show_evidence.alive == false && frame_index == 1)
+		if (anim_name == "appear" && main_conversation_court_record_show_evidence.alive == true && frame_index == 1)
 		{
-			main_conversation_court_record_show_evidence.alive = true;
-			main_conversation_court_record_show_evidence.exists = true;
+			DatabaseAnimationCourtRecords.animation_evidence();
+			UpperGUI.main_conversation_court_record_show_evidence.animation.play(DatabaseVariablesEvidence.item_animation_name[item_temporary_container]);
 		}
-		else if (anim_name == "appear" && main_conversation_court_record_show_profile.alive == false && frame_index == 1)
+		else if (anim_name == "appear" && main_conversation_court_record_show_profile.alive == true && frame_index == 1)
 		{
-			main_conversation_court_record_show_profile.alive = true;
-			main_conversation_court_record_show_profile.exists = true;
+			DatabaseAnimationCourtRecords.animation_profile();
+			UpperGUI.main_conversation_court_record_show_profile.animation.play(DatabaseVariablesProfiles.npc_id[item_temporary_container]);
+		}
+		else if(anim_name == "disappear" && frame_index == 15)
+		{
+			main_conversation_court_record_show_frame.alive = false;
+			main_conversation_court_record_show_frame.exists = false;
 		}
 	}	
 	

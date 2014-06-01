@@ -48,6 +48,7 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.arrow_main_conversation.alive == true && LowerGUI.button_main_conversation.animation.finished == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_pichoop.play();
 			LowerGUI.button_main_conversation.animation.play("pressed");
 			
 			var start_script_counter:Int = 0;
@@ -87,6 +88,8 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.button_court_record.y == ScriptCourtRecords.upper_buttons_active_y && LowerGUI.arrow_main_conversation.alive == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_bleep.play();
+			
 			halt_mouse_trigger = 1;
 			
 			LowerGUI.button_court_record.animation.play("pressed");
@@ -172,6 +175,8 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.button_evidence.y ==  ScriptCourtRecords.upper_buttons_active_y && LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.container_image_show_01.alive == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_bleep.play();
+			
 			LowerGUI.text_more_detail_name_01.text = "";
 			LowerGUI.text_more_detail_info_01.text = "";
 			LowerGUI.text_more_detail_desc.text = "";
@@ -189,6 +194,8 @@ class ScriptMouseChecks extends FlxState
 		}
 		else if (LowerGUI.button_evidence.y ==  ScriptCourtRecords.upper_buttons_active_y && LowerGUI.container_court_record_01.animation.finished == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_bleep.play();
+			
 			halt_mouse_trigger = 1;
 			
 			LowerGUI.arrow_head_left.alive = false;
@@ -248,6 +255,8 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.button_profiles.y ==  ScriptCourtRecords.upper_buttons_active_y && LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.container_image_show_01.alive == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_bleep.play();
+			
 			halt_mouse_trigger = 1;
 			
 			LowerGUI.text_more_detail_name_01.text = "";
@@ -267,6 +276,8 @@ class ScriptMouseChecks extends FlxState
 		}
 		else if (LowerGUI.button_profiles.y ==  ScriptCourtRecords.upper_buttons_active_y && LowerGUI.container_court_record_01.animation.finished == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_bleep.play();
+			
 			halt_mouse_trigger = 1;
 			
 			LowerGUI.arrow_head_left.alive = false;
@@ -414,6 +425,8 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.container_more_detail_01.alive == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_cancel.play();
+			
 			LowerGUI.button_back.animation.play("pressed");
 			
 			LowerGUI.container_court_record_01.alive = true;
@@ -458,6 +471,8 @@ class ScriptMouseChecks extends FlxState
 		}
 		else if (ScriptConversations.current_next_script != "investigation" && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_cancel.play();
+			
 			LowerGUI.button_back.animation.play("pressed");
 			
 			if (LowerGUI.button_evidence.y ==  ScriptCourtRecords.upper_buttons_active_y && LowerGUI.container_court_record_01.animation.finished == true)
@@ -561,8 +576,8 @@ class ScriptMouseChecks extends FlxState
 		LowerGUI.border_normal_upper.alive = false;
 		LowerGUI.border_normal_upper.exists = false;
 		
-		LowerGUI.border_normal_lower.alive = false;
-		LowerGUI.border_normal_lower.exists = false;
+		LowerGUI.border_normal_lower.alive = true;
+		LowerGUI.border_normal_lower.exists = true;
 		
 		LowerGUI.border_advance_upper.alive = false;
 		LowerGUI.border_advance_upper.exists = false;
@@ -587,7 +602,7 @@ class ScriptMouseChecks extends FlxState
 	
 	public static function potrait_over_01():Void
 	{
-		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 64 && Variables.mouse_y >= 443 && Variables.mouse_x <= 130 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1)
+		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 64 && Variables.mouse_y >= 443 && Variables.mouse_x <= 130 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var evidence_inventory_counter:Int = ScriptCourtRecords.evidence_current_page * 8;
 			var evidence_tentative_content_index:Int  = 0;
@@ -602,13 +617,14 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[ScriptCourtRecords.evidence_inventory[evidence_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_evidence_index = evidence_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
 				}
 			}
 		}
-		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 64 && Variables.mouse_y >= 443 && Variables.mouse_x <= 130 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1)
+		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 64 && Variables.mouse_y >= 443 && Variables.mouse_x <= 130 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var profile_inventory_counter:Int = ScriptCourtRecords.profile_current_page * 8;
 			var profile_tentative_content_index:Int  = 0;
@@ -623,6 +639,7 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_profiles = DatabaseVariablesProfiles.npc_id[ScriptCourtRecords.profile_inventory[profile_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_profile_index = profile_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
@@ -642,7 +659,7 @@ class ScriptMouseChecks extends FlxState
 	
 	public static function potrait_over_02():Void
 	{
-		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 148 && Variables.mouse_y >= 443 && Variables.mouse_x <= 214 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1)
+		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 148 && Variables.mouse_y >= 443 && Variables.mouse_x <= 214 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var evidence_inventory_counter:Int = ScriptCourtRecords.evidence_current_page * 8;
 			var evidence_tentative_content_index:Int  = 0;
@@ -657,13 +674,14 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[ScriptCourtRecords.evidence_inventory[evidence_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_evidence_index = evidence_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
 				}
 			}
 		}
-		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 148 && Variables.mouse_y >= 443 && Variables.mouse_x <= 214 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1)
+		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 148 && Variables.mouse_y >= 443 && Variables.mouse_x <= 214 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var profile_inventory_counter:Int = ScriptCourtRecords.profile_current_page * 8;
 			var profile_tentative_content_index:Int  = 0;
@@ -678,6 +696,7 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_profiles = DatabaseVariablesProfiles.npc_id[ScriptCourtRecords.profile_inventory[profile_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_profile_index = profile_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
@@ -697,7 +716,7 @@ class ScriptMouseChecks extends FlxState
 	
 	public static function potrait_over_03():Void
 	{
-		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 231 && Variables.mouse_y >= 443 && Variables.mouse_x <= 297 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1)
+		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 231 && Variables.mouse_y >= 443 && Variables.mouse_x <= 297 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var evidence_inventory_counter:Int = ScriptCourtRecords.evidence_current_page * 8;
 			var evidence_tentative_content_index:Int  = 0;
@@ -712,13 +731,14 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[ScriptCourtRecords.evidence_inventory[evidence_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_evidence_index = evidence_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
 				}
 			}
 		}
-		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 231 && Variables.mouse_y >= 443 && Variables.mouse_x <= 297 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1)
+		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 231 && Variables.mouse_y >= 443 && Variables.mouse_x <= 297 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var profile_inventory_counter:Int = ScriptCourtRecords.profile_current_page * 8;
 			var profile_tentative_content_index:Int  = 0;
@@ -733,6 +753,7 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_profiles = DatabaseVariablesProfiles.npc_id[ScriptCourtRecords.profile_inventory[profile_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_profile_index = profile_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
@@ -752,7 +773,7 @@ class ScriptMouseChecks extends FlxState
 	
 	public static function potrait_over_04():Void
 	{
-		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 315 && Variables.mouse_y >= 443 && Variables.mouse_x <= 381 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1)
+		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 315 && Variables.mouse_y >= 443 && Variables.mouse_x <= 381 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var evidence_inventory_counter:Int = ScriptCourtRecords.evidence_current_page * 8;
 			var evidence_tentative_content_index:Int  = 0;
@@ -767,13 +788,14 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[ScriptCourtRecords.evidence_inventory[evidence_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_evidence_index = evidence_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
 				}
 			}
 		}
-		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 315 && Variables.mouse_y >= 443 && Variables.mouse_x <= 381 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1)
+		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 315 && Variables.mouse_y >= 443 && Variables.mouse_x <= 381 && Variables.mouse_y <= 509 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var profile_inventory_counter:Int = ScriptCourtRecords.profile_current_page * 8;
 			var profile_tentative_content_index:Int  = 0;
@@ -788,6 +810,7 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_profiles = DatabaseVariablesProfiles.npc_id[ScriptCourtRecords.profile_inventory[profile_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_profile_index = profile_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
@@ -807,7 +830,7 @@ class ScriptMouseChecks extends FlxState
 	
 	public static function potrait_over_05():Void
 	{
-		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 64 && Variables.mouse_y >= 528 && Variables.mouse_x <= 130 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1)
+		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 64 && Variables.mouse_y >= 528 && Variables.mouse_x <= 130 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var evidence_inventory_counter:Int = ScriptCourtRecords.evidence_current_page * 8;
 			var evidence_tentative_content_index:Int  = 0;
@@ -822,13 +845,14 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[ScriptCourtRecords.evidence_inventory[evidence_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_evidence_index = evidence_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
 				}
 			}
 		}
-		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 64 && Variables.mouse_y >= 528 && Variables.mouse_x <= 130 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1)
+		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 64 && Variables.mouse_y >= 528 && Variables.mouse_x <= 130 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var profile_inventory_counter:Int = ScriptCourtRecords.profile_current_page * 8;
 			var profile_tentative_content_index:Int  = 0;
@@ -843,6 +867,7 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_profiles = DatabaseVariablesProfiles.npc_id[ScriptCourtRecords.profile_inventory[profile_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_profile_index = profile_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
@@ -862,7 +887,7 @@ class ScriptMouseChecks extends FlxState
 	
 	public static function potrait_over_06():Void
 	{
-		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 148 && Variables.mouse_y >= 528 && Variables.mouse_x <= 214 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1)
+		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 148 && Variables.mouse_y >= 528 && Variables.mouse_x <= 214 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var evidence_inventory_counter:Int = ScriptCourtRecords.evidence_current_page * 8;
 			var evidence_tentative_content_index:Int  = 0;
@@ -877,13 +902,14 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[ScriptCourtRecords.evidence_inventory[evidence_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_evidence_index = evidence_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
 				}
 			}
 		}
-		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 148 && Variables.mouse_y >= 528 && Variables.mouse_x <= 214 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1)
+		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 148 && Variables.mouse_y >= 528 && Variables.mouse_x <= 214 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var profile_inventory_counter:Int = ScriptCourtRecords.profile_current_page * 8;
 			var profile_tentative_content_index:Int  = 0;
@@ -898,6 +924,7 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_profiles = DatabaseVariablesProfiles.npc_id[ScriptCourtRecords.profile_inventory[profile_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_profile_index = profile_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
@@ -917,7 +944,7 @@ class ScriptMouseChecks extends FlxState
 	
 	public static function potrait_over_07():Void
 	{
-		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 231 && Variables.mouse_y >= 528 && Variables.mouse_x <= 297 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1)
+		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 231 && Variables.mouse_y >= 528 && Variables.mouse_x <= 297 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var evidence_inventory_counter:Int = ScriptCourtRecords.evidence_current_page * 8;
 			var evidence_tentative_content_index:Int  = 0;
@@ -932,13 +959,14 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[ScriptCourtRecords.evidence_inventory[evidence_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_evidence_index = evidence_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
 				}
 			}
 		}
-		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 231 && Variables.mouse_y >= 528 && Variables.mouse_x <= 297 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1)
+		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 231 && Variables.mouse_y >= 528 && Variables.mouse_x <= 297 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var profile_inventory_counter:Int = ScriptCourtRecords.profile_current_page * 8;
 			var profile_tentative_content_index:Int  = 0;
@@ -953,6 +981,7 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_profiles = DatabaseVariablesProfiles.npc_id[ScriptCourtRecords.profile_inventory[profile_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_profile_index = profile_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
@@ -972,7 +1001,7 @@ class ScriptMouseChecks extends FlxState
 	
 	public static function potrait_over_08():Void
 	{
-		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 315 && Variables.mouse_y >= 528 && Variables.mouse_x <= 381 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1)
+		if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_evidence.alive == true && Variables.mouse_x >= 315 && Variables.mouse_y >= 528 && Variables.mouse_x <= 381 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var evidence_inventory_counter:Int = ScriptCourtRecords.evidence_current_page * 8;
 			var evidence_tentative_content_index:Int  = 0;
@@ -987,13 +1016,14 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_evidence = DatabaseVariablesEvidence.item_animation_name[ScriptCourtRecords.evidence_inventory[evidence_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_evidence_index = evidence_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
 				}
 			}
 		}
-		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 315 && Variables.mouse_y >= 528 && Variables.mouse_x <= 381 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1)
+		else if (LowerGUI.container_court_record_01.animation.finished == true && LowerGUI.border_tag_profiles.alive == true && Variables.mouse_x >= 315 && Variables.mouse_y >= 528 && Variables.mouse_x <= 381 && Variables.mouse_y <= 594 && halt_mouse_trigger != 1 && halt_mouse_trigger != 2)
 		{
 			var profile_inventory_counter:Int = ScriptCourtRecords.profile_current_page * 8;
 			var profile_tentative_content_index:Int  = 0;
@@ -1008,6 +1038,7 @@ class ScriptMouseChecks extends FlxState
 				
 				if (FlxG.mouse.justPressed)
 				{
+					UpperGUI.sfx_selectblip1.play();
 					ScriptCourtRecords.current_picked_profiles = DatabaseVariablesProfiles.npc_id[ScriptCourtRecords.profile_inventory[profile_tentative_content_index]];
 					ScriptCourtRecords.inventory_current_profile_index = profile_tentative_content_index;
 					ScriptCourtRecords.show_more_content_part_01();
@@ -1030,6 +1061,7 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.arrow_head_left.alive == true && LowerGUI.button_big_left_scroll.alive == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_selectblip1.play();
 			LowerGUI.button_big_left_scroll.animation.play("pressed");
 			
 			if (LowerGUI.border_tag_evidence.alive == true)
@@ -1064,6 +1096,7 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.arrow_head_right.alive == true && LowerGUI.button_big_right_scroll.alive == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_selectblip1.play();
 			LowerGUI.button_big_right_scroll.animation.play("pressed");
 			
 			if (LowerGUI.border_tag_evidence.alive == true)
@@ -1099,6 +1132,7 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.arrow_head_left.alive == true && LowerGUI.button_container_left.alive == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_blink.play();
 			LowerGUI.button_container_left.animation.play("pressed");
 			
 			if (LowerGUI.border_tag_evidence.alive == true)
@@ -1136,6 +1170,7 @@ class ScriptMouseChecks extends FlxState
 	{
 		if (LowerGUI.arrow_head_right.alive == true && LowerGUI.button_container_right.alive == true && halt_mouse_trigger != 1)
 		{
+			UpperGUI.sfx_blink.play();
 			LowerGUI.button_container_right.animation.play("pressed");
 			
 			if (LowerGUI.border_tag_evidence.alive == true)

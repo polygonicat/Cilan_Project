@@ -12,7 +12,7 @@ class DatabaseAnimationCourtRecords
 {
 	public static function animation_profile():Void
 	{
-		var  temp_index_profile:Int = 0;
+		var temp_index_profile:Int = 0;
 		
 		while (DatabaseVariablesProfiles.npc_id[temp_index_profile] != null)
 		{
@@ -47,7 +47,7 @@ class DatabaseAnimationCourtRecords
 	
 	public static  function animation_evidence()
 	{
-		var  temp_index_evidence:Int = 0;
+		var temp_index_evidence:Int = 0;
 		
 		while (DatabaseVariablesEvidence.item_id[temp_index_evidence] != null)
 		{

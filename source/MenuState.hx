@@ -11,6 +11,8 @@ import flixel.tweens.FlxTween;
 import flixel.plugin.MouseEventManager;
 import openfl.Assets;
 
+import flixel.util.FlxColorUtil;
+
 //-- Sprites
 import sprites.LowerGUI;
 import sprites.UpperGUI;
@@ -98,16 +100,26 @@ class MenuState extends FlxState
 		Variables.mouse_y = FlxG.mouse.y;
 		
 		//-- Emergency Mouse Clickers (Mouse Event Manager is a dick)
-		if (ScriptMouseChecks.halt_mouse_trigger == 2 && UpperGUI.main_conversation_evidence_obtain.x == 0 && ScriptConversations.conversation_timer.running == false)
+		if (ScriptMouseChecks.halt_mouse_trigger == 2 && ScriptConversations.conversation_timer.running == false && ScriptConversations.temp_inventory_type_checker[0] == "delete")
+		{
+			LowerGUI.arrow_main_conversation.alive = true;
+			LowerGUI.arrow_main_conversation.exists = true;
+		}
+		else if (ScriptMouseChecks.halt_mouse_trigger == 2 && UpperGUI.main_conversation_evidence_obtain.x == 0 && ScriptConversations.conversation_timer.running == false)
 		{
 			if (FlxG.mouse.justPressed)
 			{
 				UpperGUI.main_conversation_box.animation.play("invisible");
 				UpperGUI.main_conversation_text.text = "";
 				UpperGUI.main_conversation_text.htmlText = "";
-				FlxTween.tween(UpperGUI.main_conversation_evidence_obtain, { x: -445 }, 0.2 );
+				
+				LowerGUI.text_court_record_nametag.text = "";
+				
+				FlxTween.tween(UpperGUI.main_conversation_court_record_show_evidence, { x:-410 }, 0.5 );
+				FlxTween.tween(UpperGUI.main_conversation_evidence_obtain, { x: -445 }, 0.2, {complete:LowerGUI.back_to_convo_from_acquire} );
 				FlxTween.tween(UpperGUI.conversation_evidence_show_nametag, { x: -292 }, 0.2 );
 				FlxTween.tween(UpperGUI.conversation_evidence_show_info, { x: -290 }, 0.2 );
+				
 				FlxTween.linearMotion(LowerGUI.container_name_tag, ScriptCourtRecords.container_name_tag_active_x, ScriptCourtRecords.container_name_tag_active_y, ScriptCourtRecords.container_name_tag_inactive_x, ScriptCourtRecords.container_name_tag_inactive_y, 0.2, true);
 				
 				LowerGUI.court_record_evidence_potrait_01_a.alive = false;
@@ -161,13 +173,6 @@ class MenuState extends FlxState
 			ScriptMouseChecks.potrait_over_08();
 			
 			ScriptMouseChecks.court_record_nametag_protection_check = 0;
-		}
-		
-		
-		
-		if (FlxG.keys.justPressed.A)
-		{
-			FlxG.log.add(ScriptCourtRecords.evidence_inventory);
 		}
 	}
 }

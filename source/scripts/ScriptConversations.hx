@@ -61,6 +61,8 @@ class ScriptConversations extends FlxState
 	public static var temp_inventory_type_checker:Array<Dynamic> = new Array();
 	public static var temp_new_item_index:Int = 0;
 	
+	public static var when_to_chirp:Int = 0;
+	
 	public function new() 
 	{
 		super();
@@ -120,6 +122,7 @@ class ScriptConversations extends FlxState
 		conversation_current_delay = delay;
 		conversation_current_inventory_update = inventory_update;
 		conversation_current_transition = npc_transition;
+		when_to_chirp = 0;
 		
 		
 		if (npc_transition != "")
@@ -157,6 +160,7 @@ class ScriptConversations extends FlxState
 				
 				UpperGUI.investigation_universal_NPC.loadGraphic(graphic_location, true, graphic_size[0], graphic_size[1], false);
 				UpperGUI.investigation_universal_NPC.x = (445 / 2) - (UpperGUI.investigation_universal_NPC.width / 2);
+				UpperGUI.investigation_universal_NPC.alpha = 1;
 				staticendnpcanimations();
 			}
 			else if (detect_npc_transition[0] == "effectprev" && UpperGUI.investigation_universal_NPC.alive == true)
@@ -207,8 +211,6 @@ class ScriptConversations extends FlxState
 			}
 		}
 		
-		FlxG.log.add("This is what evidence update contain: " + conversation_current_inventory_update);
-		
 		if (conversation_current_inventory_update != "")
 		{
 			temp_new_item_index = 0;
@@ -240,6 +242,9 @@ class ScriptConversations extends FlxState
 				UpperGUI.conversation_evidence_show_nametag.alive = true;
 				UpperGUI.conversation_evidence_show_nametag.exists = true;
 				
+				UpperGUI.main_conversation_court_record_show_evidence.alive = true;
+				UpperGUI.main_conversation_court_record_show_evidence.exists = true;
+				
 				UpperGUI.conversation_evidence_show_info.alive = true;
 				UpperGUI.conversation_evidence_show_info.exists = true;
 				
@@ -247,10 +252,22 @@ class ScriptConversations extends FlxState
 				UpperGUI.conversation_evidence_show_nametag.x = 598;
 				UpperGUI.conversation_evidence_show_info.x = 600;
 				
+				UpperGUI.main_conversation_court_record_show_evidence.x = 480;
+				UpperGUI.main_conversation_court_record_show_evidence.y = 57;
+				
+				UpperGUI.conversation_evidence_show_nametag.text = DatabaseVariablesEvidence.item_name[Std.int(temp_inventory_type_checker[1])];
+				UpperGUI.conversation_evidence_show_info.text = "Type: " + DatabaseVariablesEvidence.item_type[Std.int(temp_inventory_type_checker[1])] + "\n" +DatabaseVariablesEvidence.item_from[Std.int(temp_inventory_type_checker[1])];
+				
+				UpperGUI.main_conversation_court_record_show_evidence.animation.play(DatabaseVariablesEvidence.item_animation_name[Std.int(temp_inventory_type_checker[1])]);
+				
+				FlxTween.tween(UpperGUI.main_conversation_court_record_show_evidence, { x:35 }, 0.5 );
 				FlxTween.tween(UpperGUI.main_conversation_evidence_obtain, { x:0 }, 0.5);
 				FlxTween.tween(UpperGUI.conversation_evidence_show_nametag, { x:153 }, 0.5);
 				FlxTween.tween(UpperGUI.conversation_evidence_show_info, { x:155 }, 0.5);
 				ScriptCourtRecords.evidence_inventory.push(temp_inventory_type_checker[1]);
+				
+				UpperGUI.sfx_getitem.stop();
+				UpperGUI.sfx_getitem.play();
 				
 				var temp_evidence_add_counter:Int = 0;
 				
@@ -268,9 +285,8 @@ class ScriptConversations extends FlxState
 			else if (temp_inventory_type_checker[0] == "delete")
 			{
 				//-- Delete stuff but do not show anything court record related
-				ScriptMouseChecks.halt_mouse_trigger = 2;
-				ScriptCourtRecords.evidence_inventory.remove(temp_inventory_type_checker[1]);
-				
+				ScriptCourtRecords.evidence_inventory.remove(Std.int(temp_inventory_type_checker[1]));
+				ScriptConversations.conversation_current_inventory_update = "";
 				conversation_timer.start();
 			}
 			else if (temp_inventory_type_checker[0] == "update")
@@ -285,6 +301,9 @@ class ScriptConversations extends FlxState
 				UpperGUI.conversation_evidence_show_nametag.alive = true;
 				UpperGUI.conversation_evidence_show_nametag.exists = true;
 				
+				UpperGUI.main_conversation_court_record_show_evidence.alive = true;
+				UpperGUI.main_conversation_court_record_show_evidence.exists = true;
+				
 				UpperGUI.conversation_evidence_show_info.alive = true;
 				UpperGUI.conversation_evidence_show_info.exists = true;
 				
@@ -292,9 +311,21 @@ class ScriptConversations extends FlxState
 				UpperGUI.conversation_evidence_show_nametag.x = 598;
 				UpperGUI.conversation_evidence_show_info.x = 600;
 				
+				UpperGUI.main_conversation_court_record_show_evidence.x = 480;
+				UpperGUI.main_conversation_court_record_show_evidence.y = 57;
+				
+				UpperGUI.conversation_evidence_show_nametag.text = DatabaseVariablesEvidence.item_name[Std.int(temp_inventory_type_checker[2])];
+				UpperGUI.conversation_evidence_show_info.text = "Type: " + DatabaseVariablesEvidence.item_type[Std.int(temp_inventory_type_checker[2])] + "\n" +DatabaseVariablesEvidence.item_from[Std.int(temp_inventory_type_checker[2])];
+				
+				UpperGUI.main_conversation_court_record_show_evidence.animation.play(DatabaseVariablesEvidence.item_animation_name[Std.int(temp_inventory_type_checker[2])]);
+				
+				FlxTween.tween(UpperGUI.main_conversation_court_record_show_evidence, { x:35 }, 0.5 );
 				FlxTween.tween(UpperGUI.main_conversation_evidence_obtain, { x:0 }, 0.5);
 				FlxTween.tween(UpperGUI.conversation_evidence_show_nametag, { x:153 }, 0.5);
 				FlxTween.tween(UpperGUI.conversation_evidence_show_info, { x:155 }, 0.5);
+				
+				UpperGUI.sfx_getitem.stop();
+				UpperGUI.sfx_getitem.play();
 				
 				var temp_evidence_edit_counter:Int = 0;
 				
@@ -477,9 +508,56 @@ class ScriptConversations extends FlxState
 				else
 				{
 					ScriptConversationsSpecialEvents.special_parameters = special_event_sequence.split(",");
-					special_event_timer.repeatCount = ScriptConversationsSpecialEvents.special_parameters[1];
 					conversation_timer.stop();
 					special_event_timer.start();
+				}
+				
+				if (ScriptConversationsSpecialEvents.special_parameters[0] == "lightshake")
+				{
+					ScriptConversations.special_event_timer.repeatCount = ScriptConversationsSpecialEvents.special_parameters[1];
+					ScriptConversations.special_event_timer.delay = ScriptConversationsSpecialEvents.special_parameters[2];
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "hardshake")
+				{
+					ScriptConversations.special_event_timer.repeatCount = ScriptConversationsSpecialEvents.special_parameters[1];
+					ScriptConversations.special_event_timer.delay = ScriptConversationsSpecialEvents.special_parameters[2];
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "flash")
+				{
+					ScriptConversations.special_event_timer.repeatCount = ScriptConversationsSpecialEvents.special_parameters[1];
+					ScriptConversations.special_event_timer.delay = ScriptConversationsSpecialEvents.special_parameters[2];
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "lightflash")
+				{
+					ScriptConversations.special_event_timer.repeatCount = ScriptConversationsSpecialEvents.special_parameters[1];
+					ScriptConversations.special_event_timer.delay = ScriptConversationsSpecialEvents.special_parameters[2];
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "hardflash")
+				{
+					ScriptConversations.special_event_timer.repeatCount = ScriptConversationsSpecialEvents.special_parameters[1];
+					ScriptConversations.special_event_timer.delay = ScriptConversationsSpecialEvents.special_parameters[2];
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "delay")
+				{
+					ScriptConversations.special_event_timer.repeatCount = 1;
+					ScriptConversations.conversation_timer_update(ScriptConversationsSpecialEvents.special_parameters[1]);
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "leftevidence")
+				{
+					ScriptConversations.special_event_timer.repeatCount = 1;
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "rightevidence")
+				{
+					ScriptConversations.special_event_timer.repeatCount = 1;
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "removescreenevidence")
+				{
+					ScriptConversations.special_event_timer.repeatCount = 1;
+				}
+				else if (ScriptConversationsSpecialEvents.special_parameters[0] == "sound")
+				{
+					ScriptConversations.special_event_timer.repeatCount = ScriptConversationsSpecialEvents.special_parameters[2];
+					ScriptConversations.special_event_timer.delay = ScriptConversationsSpecialEvents.special_parameters[3];					
 				}
 			}
 			else if (conversation_current_words.charAt(conversation_letter_counter) == " ")
@@ -513,15 +591,21 @@ class ScriptConversations extends FlxState
 					UpperGUI.text_conversation_nametag.text = conversation_current_nametag;
 				}
 				
-				if (conversation_current_gender == "F")
+				if (conversation_current_gender == "F" && when_to_chirp >= 1)
 				{
+					when_to_chirp = 0;
 					UpperGUI.sfx_blipfemale.stop();
 					UpperGUI.sfx_blipfemale.play();
 				}
-				else if (conversation_current_gender == "M")
+				else if (conversation_current_gender == "M" && when_to_chirp >= 1)
 				{
+					when_to_chirp = 0;
 					UpperGUI.sfx_blipmale.stop();
 					UpperGUI.sfx_blipmale.play();
+				}
+				else 
+				{
+					when_to_chirp++;
 				}
 				
 				//-- Default Conversations
@@ -582,4 +666,5 @@ class ScriptConversations extends FlxState
 		DatabaseAnimationNPC.animation_listing();
 		ScriptConversations.conversation_timer.start();
 	}
+	//-- End of Class
 }

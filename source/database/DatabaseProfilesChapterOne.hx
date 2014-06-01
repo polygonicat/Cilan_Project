@@ -14,7 +14,7 @@ class DatabaseProfilesChapterOne
 		DatabaseVariablesProfiles.npc_name[DatabaseVariablesProfiles.npc_index] = "Cilan";
 		DatabaseVariablesProfiles.npc_gender[DatabaseVariablesProfiles.npc_index] = "M";
 		DatabaseVariablesProfiles.npc_age[DatabaseVariablesProfiles.npc_index] = "15";
-		DatabaseVariablesProfiles.npc_description[DatabaseVariablesProfiles.npc_index] = "Plant type wonder Cilan!";
+		DatabaseVariablesProfiles.npc_description[DatabaseVariablesProfiles.npc_index] = "An A-class Pokémon Connoisseur; capable of seeing the compatibility and closeness between Pokémon and their trainers.";
 		DatabaseVariablesProfiles.npc_assets[DatabaseVariablesProfiles.npc_index] = "N/A";
 		DatabaseVariablesProfiles.npc_potrait_index[DatabaseVariablesProfiles.npc_index] = 1;
 		DatabaseVariablesProfiles.npc_assets_dimensions[DatabaseVariablesProfiles.npc_index] = "251x334";
@@ -26,7 +26,7 @@ class DatabaseProfilesChapterOne
 		DatabaseVariablesProfiles.npc_name[DatabaseVariablesProfiles.npc_index] = "Cress";
 		DatabaseVariablesProfiles.npc_gender[DatabaseVariablesProfiles.npc_index] = "M";
 		DatabaseVariablesProfiles.npc_age[DatabaseVariablesProfiles.npc_index] = "15";
-		DatabaseVariablesProfiles.npc_description[DatabaseVariablesProfiles.npc_index] = "Water type wonder Cress!";
+		DatabaseVariablesProfiles.npc_description[DatabaseVariablesProfiles.npc_index] = "Water type Pokemon Connoisseur; Fire type pokemons watch out!";
 		DatabaseVariablesProfiles.npc_assets[DatabaseVariablesProfiles.npc_index] = "assets/images/GUI/character/NPC/sprite_cress_normal.png";
 		DatabaseVariablesProfiles.npc_potrait_index[DatabaseVariablesProfiles.npc_index] = 2;
 		DatabaseVariablesProfiles.npc_assets_dimensions[DatabaseVariablesProfiles.npc_index] = "254x334";	
@@ -38,7 +38,7 @@ class DatabaseProfilesChapterOne
 		DatabaseVariablesProfiles.npc_name[DatabaseVariablesProfiles.npc_index] = "Chili";
 		DatabaseVariablesProfiles.npc_gender[DatabaseVariablesProfiles.npc_index] = "M";
 		DatabaseVariablesProfiles.npc_age[DatabaseVariablesProfiles.npc_index] = "15";
-		DatabaseVariablesProfiles.npc_description[DatabaseVariablesProfiles.npc_index] = "Fire type wonder Chili!";
+		DatabaseVariablesProfiles.npc_description[DatabaseVariablesProfiles.npc_index] = "Fire type Pokemon Connoisseur; Grass type pokemons watch out!";
 		DatabaseVariablesProfiles.npc_assets[DatabaseVariablesProfiles.npc_index] = "assets/images/GUI/character/NPC/sprite_chili_normal.png";
 		DatabaseVariablesProfiles.npc_potrait_index[DatabaseVariablesProfiles.npc_index] = 3;
 		DatabaseVariablesProfiles.npc_assets_dimensions[DatabaseVariablesProfiles.npc_index] = "197x334";

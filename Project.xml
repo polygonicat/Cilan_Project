@@ -36,6 +36,30 @@
 		<music path="sfx-blipfemale.mp3" id="sfx_blipfemale" />
 		<music path="sfx-blipmale.mp3" id="sfx_blipmale" />
 		<music path="sfx-typewriter.mp3" id="sfx_typewriter" />
+		
+		<music path="sfx-bleep.mp3" id="sfx_bleep" />
+		<music path="sfx-blink.mp3" id="sfx_blink" />
+		<music path="sfx-cancel.mp3" id="sfx_cancel" />
+		<music path="sfx-damage1.mp3" id="sfx_damage1" />
+		<music path="sfx-damage2.mp3" id="sfx_damage2" />
+		<music path="sfx-dink.mp3" id="sfx_dink" />
+		<music path="sfx-dramapound.mp3" id="sfx_dramapound" />
+		<music path="sfx-lightbulb.mp3" id="sfx_lightbulb" />
+		<music path="sfx-objection.mp3" id="sfx_objection" />
+		<music path="sfx-pichoop.mp3" id="sfx_pichoop" />
+		<music path="sfx-realization.mp3" id="sfx_realization" />
+		<music path="sfx-scroll.mp3" id="sfx_scroll" />
+		<music path="sfx-selectblip1.mp3" id="sfx_selectblip1" />
+		<music path="sfx-selectblip2.mp3" id="sfx_selectblip2" />
+		<music path="sfx-shock.mp3" id="sfx_shock1" />
+		<music path="sfx-shock2.mp3" id="sfx_shock2" />
+		<music path="sfx-shooop.mp3" id="sfx_shooop" />
+		<music path="sfx-smack.mp3" id="sfx_smack" />
+		<music path="sfx-stab.mp3" id="sfx_stab1" />
+		<music path="sfx-stab2.mp3" id="sfx_stab2" />
+		<music path="sfx-thud2.mp3" id="sfx_thud2" />
+		<music path="sfx-whack.mp3" id="sfx_whack" />
+		<music path="sfx-getitem.mp3" id="sfx_getitem" />
 	</assets>
 	
 	<!--------------------------------LIBRARIES------------------------------------->
